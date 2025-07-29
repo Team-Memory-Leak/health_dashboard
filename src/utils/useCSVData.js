@@ -1,6 +1,6 @@
 // src/utils/useCSVData.js
-import Papa from 'papaparse';
-import { useEffect, useState } from 'react';
+import Papa from "papaparse";
+import { useEffect, useState } from "react";
 
 const useCSVData = (csvPath) => {
   const [data, setData] = useState([]);
@@ -20,8 +20,8 @@ const useCSVData = (csvPath) => {
       })
       .then((csvText) => {
         Papa.parse(csvText, {
-          header: true,          // Use first row as keys
-          skipEmptyLines: true,  // Skip empty lines
+          header: true, // Use first row as keys
+          skipEmptyLines: true, // Skip empty lines
           complete: (results) => {
             setData(results.data);
             setLoading(false);
