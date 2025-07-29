@@ -14,6 +14,11 @@ export default function LanguageFilter({ languageCode = "2" }) {
     <div>
       <h2>{languageCode} Data</h2>
       <p>Showing {filtered.length} entries</p>
+      <ul>
+        {filtered.slice(0, 10).map((row, i) => (
+          <li key={i}>{JSON.stringify(row)}</li>
+        ))}
+      </ul>
     </div>
   );
 }
