@@ -8,7 +8,7 @@ const navbar = () => {
         <p>Option 1</p>
         <p>Option 2</p>
         <p>Option 3</p>
-        <p>Option 4 Hello</p>
+        <p>Option 4</p>
       </div>
       <Image src={HarcLogo} alt="Harc Logo" className="w-1/8" />
     </div>
