@@ -1,9 +1,9 @@
-import LanguageData from "@/components/GenderData";
+import LanguageData from "@/components/LanguageData";
 
 const Home = () => {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <LanguageData languageCode="2" />
+    <div className="flex-wrap h-screen w-screen items-center justify-center overflow-x-hidden">
+      <LanguageData languageCode="1" />
     </div>
   );
 };
