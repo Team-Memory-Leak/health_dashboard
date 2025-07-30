@@ -19,10 +19,12 @@ const useCodebook = (codebookPath) => {
           complete: (results) => {
             const data = results.data;
             const map = {};
-            data.forEach(({ "Field Name": field, Code: code, Label: label }) => {
-              if (!map[field]) map[field] = {};
-              map[field][code] = label;
-            });
+            data.forEach(
+              ({ "Field Name": field, Code: code, Label: label }) => {
+                if (!map[field]) map[field] = {};
+                map[field][code] = label;
+              },
+            );
             setLookup(map);
             setLoading(false);
           },

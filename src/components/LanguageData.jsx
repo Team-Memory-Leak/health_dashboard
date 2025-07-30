@@ -4,10 +4,15 @@ import useCodebook from "@/utils/useCodebook";
 
 export default function LanguageFilter({ languageCode = "" }) {
   const { data, loading, error } = useCSVData("/data/CHM2022.csv");
-  const { lookup, loading: codebookLoading, error: codebookError } = useCodebook("/data/CHM Codebook.xls");
+  const {
+    lookup,
+    loading: codebookLoading,
+    error: codebookError,
+  } = useCodebook("/data/CHM Codebook.xls");
 
   if (loading || codebookLoading) return <p>Loading...</p>;
-  if (error || codebookError) return <p>Error: {error?.message || codebookError?.message}</p>;
+  if (error || codebookError)
+    return <p>Error: {error?.message || codebookError?.message}</p>;
 
   // Decode a single survey row
   const decode = (row) => {
@@ -23,12 +28,19 @@ export default function LanguageFilter({ languageCode = "" }) {
 
   return (
     <div>
-      <p className="text-xl">Decoded Entries for Language Code: {languageCode}</p>
+      <p className="text-xl">
+        Decoded Entries for Language Code: {languageCode}
+      </p>
       <p>Showing {filtered.length} entries</p>
       <ul>
         {filtered.slice(0, 1000).map((row, i) => {
           const decoded = decode(row);
-          return <li key={i}>{decoded.City === "9" ? "Palm Desert" : "Unknown City"} — {decoded.Language}</li>;
+          return (
+            <li key={i}>
+              {decoded.City === "9" ? "Palm Desert" : "Unknown City"} —{" "}
+              {decoded.Language}
+            </li>
+          );
         })}
       </ul>
     </div>
