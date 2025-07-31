@@ -6,27 +6,33 @@ interface LanguageFilterProps {
   languageCode?: string;
 }
 
-interface SurveyRow {
-  [key: string]: string;
+interface DataRow {
+  [key: string]: string | number | undefined;
 }
 
-interface DecodedRow {
-  [key: string]: string;
-}
-
-interface Lookup {
-  [fieldName: string]: {
-    [code: string]: string;
+interface LookupTable {
+  [key: string]: {
+    [value: string]: string;
   };
 }
 
-export default function LanguageFilter({ languageCode }: LanguageFilterProps) {
-  const { data, loading, error } = useCSVData("/data/CHM2022.csv");
+export default function LanguageFilter({
+  languageCode = "",
+}: LanguageFilterProps) {
+  const { data, loading, error } = useCSVData("/data/CHM2022.csv") as {
+    data: DataRow[];
+    loading: boolean;
+    error: Error | null;
+  };
   const {
     lookup,
     loading: codebookLoading,
     error: codebookError,
-  } = useCodebook("/data/CHM Codebook.xls");
+  } = useCodebook("/data/CHM Codebook.xls") as {
+    lookup: LookupTable;
+    loading: boolean;
+    error: Error | null;
+  };
 
   if (loading || codebookLoading) return <p>Loading...</p>;
   if (error || codebookError) {
@@ -37,22 +43,22 @@ export default function LanguageFilter({ languageCode }: LanguageFilterProps) {
     return <p>Error: {errorMessage}</p>;
   }
 
-  // Decode a single survey row
-  const decode = (row: SurveyRow): DecodedRow => {
-    const decoded: DecodedRow = {};
+  // Decode a single survey row using the codebook
+  const decode = (row: DataRow): DataRow => {
+    const decoded: DataRow = {};
     for (const key in row) {
       const val = row[key];
-      decoded[key] = (lookup as Lookup)[key]?.[val] || val;
+      decoded[key] = lookup[key]?.[String(val)] || val;
     }
     return decoded;
   };
 
-  const filtered = (data as SurveyRow[]).filter(
+  const filtered = (data as DataRow[]).filter(
     (row) => row.Language === languageCode,
   );
 
   return (
-    <div>
+    <>
       <p className="text-xl">
         Decoded Entries for Language Code: {languageCode}
       </p>
@@ -62,12 +68,11 @@ export default function LanguageFilter({ languageCode }: LanguageFilterProps) {
           const decoded = decode(row);
           return (
             <li key={i}>
-              {decoded.City === "9" ? "Palm Desert" : "Unknown City"} —{" "}
-              {decoded.Language}
+              {decoded.City || "Unknown City"} — {decoded.Language}
             </li>
           );
         })}
       </ul>
-    </div>
+    </>
   );
 }
