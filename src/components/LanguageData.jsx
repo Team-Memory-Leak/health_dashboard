@@ -14,12 +14,12 @@ export default function LanguageFilter({ languageCode = "" }) {
   if (error || codebookError)
     return <p>Error: {error?.message || codebookError?.message}</p>;
 
-  // Decode a single survey row
+  // Decode a single survey row using the codebook
   const decode = (row) => {
     const decoded = {};
     for (const key in row) {
       const val = row[key];
-      decoded[key] = lookup[key]?.[val] || val;
+      decoded[key] = lookup[key]?.[String(val)] || val;
     }
     return decoded;
   };
@@ -37,8 +37,7 @@ export default function LanguageFilter({ languageCode = "" }) {
           const decoded = decode(row);
           return (
             <li key={i}>
-              {decoded.City === "9" ? "Palm Desert" : "Unknown City"} —{" "}
-              {decoded.Language}
+              {decoded.City || "Unknown City"} — {decoded.Language}
             </li>
           );
         })}
