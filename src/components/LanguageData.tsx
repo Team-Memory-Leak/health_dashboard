@@ -58,7 +58,7 @@ export default function LanguageFilter({
   );
 
   return (
-    <div>
+    <>
       <p className="text-xl">
         Decoded Entries for Language Code: {languageCode}
       </p>
@@ -73,6 +73,6 @@ export default function LanguageFilter({
           );
         })}
       </ul>
-    </div>
+    </>
   );
 }
