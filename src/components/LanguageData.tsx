@@ -2,21 +2,45 @@
 import useCSVData from "@/utils/useCSVData";
 import useCodebook from "@/utils/useCodebook";
 
-export default function LanguageFilter({ languageCode = "" }) {
-  const { data, loading, error } = useCSVData("/data/CHM2022.csv");
+interface LanguageFilterProps {
+  languageCode?: string;
+}
+
+interface DataRow {
+  [key: string]: string | number | undefined;
+}
+
+interface LookupTable {
+  [key: string]: {
+    [value: string]: string;
+  };
+}
+
+export default function LanguageFilter({
+  languageCode = "",
+}: LanguageFilterProps) {
+  const { data, loading, error } = useCSVData("/data/CHM2022.csv") as {
+    data: DataRow[];
+    loading: boolean;
+    error: Error | null;
+  };
   const {
     lookup,
     loading: codebookLoading,
     error: codebookError,
-  } = useCodebook("/data/CHM Codebook.xls");
+  } = useCodebook("/data/CHM Codebook.xls") as {
+    lookup: LookupTable;
+    loading: boolean;
+    error: Error | null;
+  };
 
   if (loading || codebookLoading) return <p>Loading...</p>;
   if (error || codebookError)
     return <p>Error: {error?.message || codebookError?.message}</p>;
 
   // Decode a single survey row using the codebook
-  const decode = (row) => {
-    const decoded = {};
+  const decode = (row: DataRow): DataRow => {
+    const decoded: DataRow = {};
     for (const key in row) {
       const val = row[key];
       decoded[key] = lookup[key]?.[String(val)] || val;
