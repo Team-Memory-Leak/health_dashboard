@@ -35,8 +35,13 @@ export default function LanguageFilter({
   };
 
   if (loading || codebookLoading) return <p>Loading...</p>;
-  if (error || codebookError)
-    return <p>Error: {error?.message || codebookError?.message}</p>;
+  if (error || codebookError) {
+    const errorMessage =
+      (error as unknown as Error)?.message ||
+      (codebookError as unknown as Error)?.message ||
+      "An error occurred";
+    return <p>Error: {errorMessage}</p>;
+  }
 
   // Decode a single survey row using the codebook
   const decode = (row: DataRow): DataRow => {
@@ -48,7 +53,9 @@ export default function LanguageFilter({
     return decoded;
   };
 
-  const filtered = data.filter((row) => row.Language === languageCode);
+  const filtered = (data as DataRow[]).filter(
+    (row) => row.Language === languageCode,
+  );
 
   return (
     <div>
