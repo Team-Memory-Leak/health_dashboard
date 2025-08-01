@@ -1,4 +1,5 @@
 import "./globals.css";
+//Continue importing fonts
 import { Inter } from "next/font/google";
 import { ReactQueryClientProvider } from "@/utils/react-query";
 import Navbar from "@/components/page/navbar";
