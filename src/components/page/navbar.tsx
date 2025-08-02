@@ -5,7 +5,7 @@ import HarcLogo from "@/public/images/Harc_Logo.webp";
 const navbar = () => {
   return (
     <div className="flex flex-col">
-      <div className="bg-harc-darkblue text-harc-gray flex w-full flex-row justify-end gap-5 p-5 text-2xl">
+      <div className="bg-harc-darkblue text-harc-gray font-harc-main flex w-full flex-row justify-end gap-5 p-5 text-xl">
         <Link href="/">Option 1</Link>
         <Link href="/">Option 2</Link>
         <Link href="/">Option 3</Link>

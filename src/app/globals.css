@@ -15,6 +15,9 @@
   --color-harc-brightorange: #ff5f00;
   --color-harc-red: #e2231a;
   --color-harc-yellow: #ffe900;
+
+  --font-harc-main: "Montserrat", serif;
+  --font-harc-alt: "Playfair Display", serif;
 }
 
 @theme inline {
