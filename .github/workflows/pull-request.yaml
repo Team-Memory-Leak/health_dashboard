@@ -1,7 +1,7 @@
-name: ACM UCR Website
+name: HARC Community Health Dashboard
 on:
   pull_request:
-    branches: [main, dev]
+    branches: [deploy, dev]
   workflow_dispatch:
 
 jobs:
