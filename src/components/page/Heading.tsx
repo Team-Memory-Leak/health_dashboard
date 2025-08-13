@@ -9,15 +9,11 @@ interface HeadingProps {
 }
 
 // Done to use card formatting to display data on the same page
-const Heading: React.FC<HeadingProps> = ({title, description, content}) => {
+const Heading: React.FC<HeadingProps> = ({ title, description, content }) => {
   return (
     <div className="text-center">
-      <h1 className="text-[1.4rem] font-harc-alt font-semibold">
-        {title}
-      </h1>
-      <p>
-        {description}
-      </p>
+      <h1 className="font-harc-alt text-[1.4rem] font-semibold">{title}</h1>
+      <p>{description}</p>
       {content}
     </div>
   );
