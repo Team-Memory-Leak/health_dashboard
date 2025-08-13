@@ -1,20 +1,13 @@
-"use client";
-
-import React from "react";
-
 interface HeadingProps {
   title?: string;
   description?: string;
-  content?: React.ReactNode;
 }
 
-// Done to use card formatting to display data on the same page
-const Heading: React.FC<HeadingProps> = ({ title, description, content }) => {
+const Heading: React.FC<HeadingProps> = ({ title, description}) => {
   return (
-    <div className="text-center">
-      <h1 className="font-harc-alt text-[1.4rem] font-semibold">{title}</h1>
-      <p>{description}</p>
-      {content}
+    <div className="flex flex-col text-center items-center">
+      <p className="font-harc-alt text-2xl font-semibold py-5">{title}</p>
+      <p className="font-harc-main w-1/2">{description}</p>
     </div>
   );
 };
