@@ -3,10 +3,10 @@ interface HeadingProps {
   description?: string;
 }
 
-const Heading: React.FC<HeadingProps> = ({ title, description}) => {
+const Heading: React.FC<HeadingProps> = ({ title, description }) => {
   return (
-    <div className="flex flex-col text-center items-center">
-      <p className="font-harc-alt text-2xl font-semibold py-5">{title}</p>
+    <div className="flex flex-col items-center text-center">
+      <p className="font-harc-alt py-5 text-2xl font-semibold">{title}</p>
       <p className="font-harc-main w-1/2">{description}</p>
     </div>
   );
