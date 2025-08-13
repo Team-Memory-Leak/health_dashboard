@@ -1,32 +1,35 @@
 import Image from "next/image";
-import { Montserrat, Playfair_Display } from "next/font/google";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
-const playfair = Playfair_Display({ subsets: ["latin"] });
 
 const CoachellaPopulation = () => {
+  // You can use "fill" layout and set sizes via CSS for responsive images
   return (
-    <div className="flex flex-col md:flex-row p-8 gap-12 h-[600px]">
-      {/* Text Section */}
+    <div className="flex h-[600px] flex-col gap-12 p-8 md:flex-row">
       <div className="flex flex-1 flex-col items-center justify-center text-center md:text-center">
         <div>
-          <h1 className={`text-7xl mb-4 ${playfair.className}`}>This is Coachella</h1>
-          <p className={`text-8xl font-extrabold text-[#002e6d] ${montserrat.className}`}>
+          <p className={`font-harc-alt mb-4 text-7xl`}>This is Coachella</p>
+          <p
+            className={`font-harc-main text-8xl font-extrabold text-[#002e6d]`}
+          >
             441,531
           </p>
-          <p className={`text-8xl font-extrabold text-[#002e6d] ${montserrat.className}`}>
+          <p
+            className={`font-harc-main text-8xl font-extrabold text-[#002e6d]`}
+          >
             People
           </p>
         </div>
       </div>
 
-      {/* Image Section */}
-      <div className="flex flex-1 items-center justify-center">
+      <div
+        className="relative flex flex-1 items-center justify-center"
+        style={{ minHeight: 400 }}
+      >
         <Image
           src="/images/population.webp"
           alt="Map of Coachella Valley"
-          width={700}
-          height={400}
+          fill
+          style={{ objectFit: "contain" }}
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
     </div>
@@ -34,5 +37,3 @@ const CoachellaPopulation = () => {
 };
 
 export default CoachellaPopulation;
-
-
