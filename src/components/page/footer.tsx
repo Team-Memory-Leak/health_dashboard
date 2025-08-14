@@ -1,4 +1,3 @@
-// File: components/Footer.tsx
 import Link from "next/link";
 import Image from "next/image";
 
@@ -132,34 +131,14 @@ const Footer = () => {
           <h2 className="mb-4 font-semibold tracking-widest">
             HARC EMAIL LIST
           </h2>
-          <form className="space-y-4">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="First Name"
-                required
-                className="w-1/2 rounded border border-gray-300 px-2 py-1"
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                required
-                className="w-1/2 rounded border border-gray-300 px-2 py-1"
-              />
-            </div>
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              className="w-full rounded border border-gray-300 px-2 py-1"
-            />
-            <button
-              type="submit"
-              className="w-full rounded bg-blue-900 px-4 py-2 font-semibold text-white"
+          <div className="space-y-4 flex-col">
+            <Link
+              href={"https://harcdata.org/subscribe/"}
+              className="w-full rounded bg-harc-darkblue px-4 py-2 font-semibold text-white"
             >
-              SUBMIT
-            </button>
-          </form>
+              Join Our Email List
+            </Link>
+          </div>
         </div>
 
         <div className="flex flex-col items-center md:items-end">
