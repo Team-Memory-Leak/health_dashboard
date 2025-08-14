@@ -131,10 +131,10 @@ const Footer = () => {
           <h2 className="mb-4 font-semibold tracking-widest">
             HARC EMAIL LIST
           </h2>
-          <div className="space-y-4 flex-col">
+          <div className="flex-col space-y-4">
             <Link
               href={"https://harcdata.org/subscribe/"}
-              className="w-full rounded bg-harc-darkblue px-4 py-2 font-semibold text-white"
+              className="bg-harc-darkblue w-full rounded px-4 py-2 font-semibold text-white"
             >
               Join Our Email List
             </Link>

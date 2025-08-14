@@ -1,11 +1,11 @@
-import Header from "@/components/page/Heading"
+import Header from "@/components/page/Heading";
 
 const page = () => {
   return (
     <div>
-      <Header/>
+      <Header />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

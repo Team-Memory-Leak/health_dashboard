@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const CoachellaPopulation = () => {
-
   return (
     <div className="flex h-[600px] flex-col gap-12 p-8 md:flex-row">
       <div className="flex flex-1 flex-col items-center justify-center text-center md:text-center">

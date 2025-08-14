@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -34,7 +34,10 @@ const Dropdown: React.FC = () => {
   }, [open]);
 
   return (
-    <div ref={dropdownRef} style={{ position: "relative", display: "inline-block" }}>
+    <div
+      ref={dropdownRef}
+      style={{ position: "relative", display: "inline-block" }}
+    >
       <div
         onClick={() => setOpen((prev) => !prev)}
         style={{
@@ -42,14 +45,10 @@ const Dropdown: React.FC = () => {
         }}
       >
         Menu
-        <span className="pl-1">
-          {open ? "▲" : "▼"}
-        </span>
+        <span className="pl-1">{open ? "▲" : "▼"}</span>
       </div>
       {open && (
-        <div
-          className="absolute top-[110%] left-0 bg-white border border-gray-300 rounded shadow-lg z-[1000] min-w-[150px] text-harc-darkgray"
-        >
+        <div className="text-harc-darkgray absolute top-[110%] left-0 z-[1000] min-w-[150px] rounded border border-gray-300 bg-white shadow-lg">
           {pages.map((page) => (
             <Link
               href={page.path}
