@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 
 const pages = [
   { name: "Home", path: "/" },
-  { name: "Health Access", path: "/healthAcess" },
+  { name: "Health Access", path: "/healthaccess" },
   { name: "Profile", path: "/" },
   { name: "Settings", path: "/" },
 ];
@@ -14,36 +14,14 @@ const Dropdown: React.FC = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [open]);
-
   return (
     <div
       ref={dropdownRef}
       style={{ position: "relative", display: "inline-block" }}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
-      <div
-        onClick={() => setOpen((prev) => !prev)}
-        style={{
-          cursor: "pointer",
-        }}
-      >
+      <div style={{ cursor: "pointer" }}>
         Menu
         <span className="pl-1">{open ? "▲" : "▼"}</span>
       </div>
