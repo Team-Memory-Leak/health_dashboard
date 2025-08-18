@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HarcLogo from "@/public/images/Harc_Logo.webp";
+import Dropdown from "@/components/page/dropdown";
 
 const navbar = () => {
   return (
@@ -16,6 +17,7 @@ const navbar = () => {
           <Link href="https://harcdata.org/subscribe/" target="_blank">
             Join Our Email List
           </Link>
+          <Dropdown />
           <Link href="https://www.facebook.com/HARCData" target="_blank">
             <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
               <path
