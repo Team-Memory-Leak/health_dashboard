@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
               >
                 Join Our Email List
               </Link>
-              <Dropdown/>
+              <Dropdown />
             </div>
             <div className="mt-2 flex gap-3 md:mt-0">
               <Link

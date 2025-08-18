@@ -1,8 +1,5 @@
-
 const page = () => {
-  return (
-    <div>Air Quality</div>
-  )
-}
+  return <div>Air Quality</div>;
+};
 
-export default page
+export default page;
