@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   // Prevent closing menu when clicking inside the sidebar
-  const handleSidebarClick = (e: MouseEvent) => {
+  const handleSidebarClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
 
@@ -20,18 +20,31 @@ const Navbar: React.FC = () => {
         {typeof window !== "undefined" && (
           <button
             className="absolute top-4 left-4 z-30 md:hidden"
-            aria-label="Open menu"
-            onClick={() => setOpen(true)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((prev) => !prev)}
             type="button"
           >
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
-              <path
-                stroke="#000000ff"
-                strokeWidth="2"
-                strokeLinecap="round"
-                d="M4 7h16M4 12h16M4 17h16"
-              />
-            </svg>
+            {open ? (
+              // Close Icon (X)
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  d="M6 6l12 12M6 18L18 6"
+                />
+              </svg>
+            ) : (
+              // Hamburger Icon
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <path
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  d="M4 7h16M4 12h16M4 17h16"
+                />
+              </svg>
+            )}
           </button>
         )}
 
