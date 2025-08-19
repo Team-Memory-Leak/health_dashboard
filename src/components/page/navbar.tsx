@@ -3,6 +3,7 @@ import { useState, MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HarcLogo from "@/public/images/Harc_Logo.webp";
+import Dropdown from "@/components/page/dropdown";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -89,6 +90,7 @@ const Navbar: React.FC = () => {
               >
                 Join Our Email List
               </Link>
+              <Dropdown />
             </div>
             <div className="mt-2 flex gap-3 md:mt-0">
               <Link
