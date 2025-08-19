@@ -12,17 +12,17 @@ export default function NotFound() {
         priority
       />
 
-      <h1 className="font-harc-main mb-4 text-6xl font-bold text-[var(--color-harc-darkblue)]">
+      <h1 className="font-harc-main mb-4 text-6xl font-bold text-harc-darkblue">
         404
       </h1>
 
-      <p className="font-harc-main mb-8 max-w-2xl text-2xl font-semibold text-[var(--color-harc-darkblue)]">
+      <p className="font-harc-main mb-8 max-w-2xl text-2xl font-semibold text-harc-darkblue">
         Oops! The page you’re looking for doesn’t exist.
       </p>
 
       <Link
         href="/"
-        className="hover:bg-[color-mix(in srgb, var(--color-harc-darkblue) 90%, black)] font-harc-main rounded-lg bg-[var(--color-harc-darkblue)] px-6 py-3 font-semibold text-white shadow-md transition"
+        className="font-harc-main rounded-lg bg-harc-darkblue px-6 py-3 font-semibold text-white"
       >
         Go Back Home
       </Link>
