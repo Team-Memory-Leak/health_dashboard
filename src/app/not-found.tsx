@@ -1,5 +1,31 @@
-const NotFound = () => {
-  return <div>404 Page Not Found</div>;
-};
+import Link from "next/link";
+import Image from "next/image";
+import Harc_Logo from "@/public/images/Harc_Logo.webp";
 
-export default NotFound;
+export default function NotFound() {
+  return (
+    <div className="flex flex-col items-center bg-gray-50 px-4 py-24 text-center">
+      <Image
+        src={Harc_Logo}
+        alt="Harc Logo"
+        className="mb-8 h-auto w-32"
+        priority
+      />
+
+      <h1 className="font-harc-main mb-4 text-6xl font-bold text-[var(--color-harc-darkblue)]">
+        404
+      </h1>
+
+      <p className="font-harc-main mb-8 max-w-2xl text-2xl font-semibold text-[var(--color-harc-darkblue)]">
+        Oops! The page you’re looking for doesn’t exist.
+      </p>
+
+      <Link
+        href="/"
+        className="hover:bg-[color-mix(in srgb, var(--color-harc-darkblue) 90%, black)] font-harc-main rounded-lg bg-[var(--color-harc-darkblue)] px-6 py-3 font-semibold text-white shadow-md transition"
+      >
+        Go Back Home
+      </Link>
+    </div>
+  );
+}
