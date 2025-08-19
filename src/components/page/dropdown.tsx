@@ -6,8 +6,8 @@ import Link from "next/link";
 const pages = [
   { name: "Home", path: "/" },
   { name: "Health Access", path: "/healthaccess" },
-  { name: "Profile", path: "/" },
-  { name: "Settings", path: "/" },
+  { name: "Mental Health", path: "/mentalhealth" },
+  { name: "Air Quality", path: "/airquality" },
 ];
 
 const Dropdown: React.FC = () => {
@@ -18,10 +18,11 @@ const Dropdown: React.FC = () => {
     <div
       ref={dropdownRef}
       style={{ position: "relative", display: "inline-block" }}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
     >
-      <div style={{ cursor: "pointer" }}>
+      <div
+        style={{ cursor: "pointer" }}
+        onMouseDown={() => setOpen((prev) => !prev)}
+      >
         Menu
         <span className="pl-1">{open ? "▲" : "▼"}</span>
       </div>
