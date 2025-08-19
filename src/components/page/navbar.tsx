@@ -1,5 +1,5 @@
 "use client";
-import { useState, MouseEvent } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HarcLogo from "@/public/images/Harc_Logo.webp";
@@ -7,6 +7,11 @@ import Dropdown from "@/components/page/dropdown";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Prevent closing menu when clicking inside the sidebar
   const handleSidebarClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -17,7 +22,7 @@ const Navbar: React.FC = () => {
     <>
       <nav className="relative">
         {/* Hamburger Icon */}
-        {typeof window !== "undefined" && (
+        {mounted && (
           <button
             className="absolute top-4 left-4 z-30 md:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
