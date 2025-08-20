@@ -43,7 +43,6 @@ export default function LanguageFilter({
     return <p>Error: {errorMessage}</p>;
   }
 
-  // Decode a single survey row using the codebook
   const decode = (row: DataRow): DataRow => {
     const decoded: DataRow = {};
     for (const key in row) {
