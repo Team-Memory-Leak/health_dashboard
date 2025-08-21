@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Drawer } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -7,12 +7,12 @@ import { Select } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 
 const races = [
-'Asian',
-'Black',
-'Hispanic',
-'White',
-'Native American',
-'Other',
+  "Asian",
+  "Black",
+  "Hispanic",
+  "White",
+  "Native American",
+  "Other",
 ];
 
 const minAge = 0;
@@ -35,11 +35,11 @@ const FiltersSidebar: React.FC<{ open?: boolean; onClose?: () => void }> = ({
 
   return (
     <Drawer open={open} onClose={onClose}>
-      <div className="w-72 p-6 flex flex-col gap-6">
-        <h2 className="text-lg font-semibold mb-2">Filters</h2>
+      <div className="flex w-72 flex-col gap-6 p-6">
+        <h2 className="mb-2 text-lg font-semibold">Filters</h2>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Age Range</label>
+          <label className="mb-2 block text-sm font-medium">Age Range</label>
           <Slider
             value={age}
             onValueChange={setAge}
@@ -47,13 +47,13 @@ const FiltersSidebar: React.FC<{ open?: boolean; onClose?: () => void }> = ({
             max={maxAge}
             className="my-2"
           />
-          <div className="text-xs text-muted-foreground mt-1">
+          <div className="text-muted-foreground mt-1 text-xs">
             {age[0]} - {age[1]}
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Race</label>
+          <label className="mb-2 block text-sm font-medium">Race</label>
           <div className="flex flex-col gap-2">
             {races.map((race) => (
               <div key={race} className="flex items-center px-2 py-1">
@@ -63,7 +63,7 @@ const FiltersSidebar: React.FC<{ open?: boolean; onClose?: () => void }> = ({
                     setSelectedRaces((prev) =>
                       checked
                         ? [...prev, race]
-                        : prev.filter((r) => r !== race)
+                        : prev.filter((r) => r !== race),
                     );
                   }}
                   id={`race-${race}`}
