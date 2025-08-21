@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Drawer } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 
 const races = [
