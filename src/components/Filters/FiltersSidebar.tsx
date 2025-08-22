@@ -14,23 +14,33 @@ const races = [
   "Other",
 ];
 
-const minAge = 0;
-const maxAge = 100;
+const minAge = 18;
+const maxAge = 110;
 
-const FiltersSidebar: React.FC<{ open?: boolean; onClose?: () => void }> = ({
+interface FiltersSidebarProps {
+  open?: boolean;
+  onClose?: () => void;
+  onChange?: (filters: { age: number[]; races: string[] }) => void;
+}
+
+const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
   open = false,
   onClose = () => {},
+  onChange = () => {},
 }) => {
   const [age, setAge] = useState<number[]>([18, 65]);
-  const [selectedRaces, setSelectedRaces] = useState<string[]>([]);
+  const [selectedRace, setSelectedRaces] = useState<string>("");
 
-  // Reset filters when sidebar closes
   useEffect(() => {
     if (!open) {
       setAge([18, 65]);
-      setSelectedRaces([]);
+      setSelectedRaces("");
     }
   }, [open]);
+
+  useEffect(() => {
+    onChange({ age, races: selectedRace ? [selectedRace] : [] });
+  }, [age, selectedRace, onChange]);
 
   return (
     <Drawer open={open} onClose={onClose}>
@@ -57,13 +67,9 @@ const FiltersSidebar: React.FC<{ open?: boolean; onClose?: () => void }> = ({
             {races.map((race) => (
               <div key={race} className="flex items-center px-2 py-1">
                 <Checkbox
-                  checked={selectedRaces.includes(race)}
+                  checked={selectedRace === race}
                   onCheckedChange={(checked) => {
-                    setSelectedRaces((prev) =>
-                      checked
-                        ? [...prev, race]
-                        : prev.filter((r) => r !== race),
-                    );
+                    setSelectedRaces(checked ? race : "");
                   }}
                   id={`race-${race}`}
                 />
@@ -79,7 +85,7 @@ const FiltersSidebar: React.FC<{ open?: boolean; onClose?: () => void }> = ({
           variant="outline"
           onClick={() => {
             setAge([18, 65]);
-            setSelectedRaces([]);
+            setSelectedRaces("");
           }}
           className="mt-2"
         >
