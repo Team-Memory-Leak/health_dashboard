@@ -1,6 +1,5 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
@@ -18,12 +17,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export const description = "A bar chart";
-
-const chartData = [
-  { response: "No", desktop: 186 },
-  { response: "Yes", desktop: 305 },
-];
+import { useInsuranceCount } from "../Filters/dataRetrieval";
 
 const chartConfig = {
   desktop: {
@@ -32,42 +26,48 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartBarDefault() {
+export default function ChartBarDefault() {
+  const { count, loading } = useInsuranceCount("1","aa4");
+  const { count: count1 } = useInsuranceCount("2","aa4");
+
+  const chartData = [
+    { response: "No", desktop: count1 },
+    { response: "Yes", desktop: count },
+  ];
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Insurance Bar Chart</CardTitle>
+        <CardDescription>Coverage breakdown</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Bar dataKey="desktop" fill="#0022FF" radius={8} />
-          </BarChart>
-        </ChartContainer>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <ChartContainer config={chartConfig}>
+            <BarChart accessibilityLayer data={chartData}>
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="response"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="desktop" fill="#0022FF" radius={8} />
+            </BarChart>
+          </ChartContainer>
+        )}
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
         <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
+          Showing total Health Coverage Responses
         </div>
       </CardFooter>
     </Card>
   );
 }
-
-export default ChartBarDefault;
