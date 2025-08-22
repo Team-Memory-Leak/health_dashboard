@@ -27,8 +27,8 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function ChartBarDefault() {
-  const { count, loading } = useInsuranceCount("1","aa4");
-  const { count: count1 } = useInsuranceCount("2","aa4");
+  const { count, loading } = useInsuranceCount("1", "aa4");
+  const { count: count1 } = useInsuranceCount("2", "aa4");
 
   const chartData = [
     { response: "No", desktop: count1 },
