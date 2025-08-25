@@ -19,6 +19,7 @@ const Dropdown: React.FC = () => {
       ref={dropdownRef}
       style={{ position: "relative", display: "inline-block" }}
     >
+      {/* Trigger */}
       <div
         style={{ cursor: "pointer" }}
         onMouseDown={() => setOpen((prev) => !prev)}
@@ -26,20 +27,24 @@ const Dropdown: React.FC = () => {
         Menu
         <span className="pl-1">{open ? "▲" : "▼"}</span>
       </div>
-      {open && (
-        <div className="text-harc-darkgray absolute top-[110%] left-0 z-[1000] min-w-[150px] rounded border border-gray-300 bg-white shadow-lg">
-          {pages.map((page) => (
-            <Link
-              href={page.path}
-              className="flex flex-col p-2"
-              onClick={() => setOpen(false)}
-              key={page.name}
-            >
-              {page.name}
-            </Link>
-          ))}
-        </div>
-      )}
+
+      {/* Animated dropdown */}
+      <div
+        className={`absolute top-[110%] left-0 z-[1000] min-w-[150px] origin-top transform overflow-hidden rounded border border-gray-300 bg-white shadow-lg transition-all duration-500 ease-out ${
+          open ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
+        }`}
+      >
+        {pages.map((page) => (
+          <Link
+            href={page.path}
+            className="flex flex-col p-2 text-black hover:bg-gray-200"
+            onClick={() => setOpen(false)}
+            key={page.name}
+          >
+            {page.name}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
